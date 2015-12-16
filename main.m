@@ -74,7 +74,9 @@ end
 
 
 %% MOD
-disp('Start MOD:');
+startTime = clock;
+startTime = ceil(startTime);
+disp(['Start MOD at ' num2str(startTime)]);
 tic
 
 K = dimOfData+1;
@@ -91,7 +93,9 @@ param = struct('K', K, 'numIteration', numIteration, 'errorFlag', errorFlag, 'L'
 [Dictionary, output] = MOD(trainDataMatrix, param);
 
 toc
-
+endTime = clock;
+endTime = ceil(endTime);
+disp(['End MOD at ' num2str(endTime)]);
 
 
 
