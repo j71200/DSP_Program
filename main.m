@@ -1,9 +1,10 @@
-% MOD algorithm
+% KSVD algorithm
 close('all')
 clear
 clc
 
-trainDataFolderPath = './train data/plants/';
+trainDataFolderPath = './train data/one_plant/';
+% trainDataFolderPath = './train data/plants/';
 % trainDataFolderPath = './train data/wood/';
 DEFAULT_IMAGE_HEIGHT = 512;
 DEFAULT_IMAGE_WIDTH = 512;
@@ -73,10 +74,10 @@ for trainDataIdx = 1:totalNumOfTrainData
 end
 
 
-%% MOD
+%% KSVD
 startTime = clock;
 startTime = ceil(startTime);
-disp(['Start MOD at ' num2str(startTime)]);
+disp(['Start KSVD at ' num2str(startTime(1)) '/' num2str(startTime(2)) '/' num2str(startTime(3)) ' ' num2str(startTime(4)) ':' num2str(startTime(5)) ]);
 tic
 
 K = dimOfData+1;
@@ -90,13 +91,14 @@ displayProgress = 1;
 
 param = struct('K', K, 'numIteration', numIteration, 'errorFlag', errorFlag, 'L', L, 'InitializationMethod', InitializationMethod, 'preserveDCAtom', preserveDCAtom, 'TrueDictionary', TrueDictionary, 'displayProgress', displayProgress);
 
-[Dictionary, output] = MOD(trainDataMatrix, param);
+[Dictionary, output] = KSVD(trainDataMatrix, param);
+save(['var_of_KSVD_' num2str(startTime(1)) '_' num2str(startTime(2)) '_' num2str(startTime(3)) '_' num2str(startTime(4)) '_' num2str(startTime(5))]);
 
 toc
 endTime = clock;
 endTime = ceil(endTime);
-disp(['End MOD at ' num2str(endTime)]);
-
+% disp(['End KSVD at ' num2str(endTime)]);
+disp(['End KSVD at ' num2str(endTime(1)) '/' num2str(endTime(2)) '/' num2str(endTime(3)) ' ' num2str(endTime(4)) ':' num2str(endTime(5)) ]);
 
 
 
